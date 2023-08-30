@@ -88,7 +88,7 @@
 --- Generate a map in the 7dtd Random Gen Previewer with max 20% pine forest, 20% desert, 20% wasteland, and 40% snow. Note the map's name. Keep the Random Gen Previewer available (don't select 'Back' yet). 
 --- Using Windows Explorer, find the folder with the map (for me it's .../(my windows account name)/AppData/Roaming/7DaysToDie/GeneratedWorlds/(the name of the map))
 --- Copy/paste the 'biomes' file so you have 'biomes - Copy' as a backup. 
---- Open 'biomes' (not 'biomes - Copy') in an image editor (I use GIMP), and colour half the snow biome in the burnt forest colour code (ba00ff). (Use the Pencil, not the Brush, to draw an outline, then the Bucket to fill in the middle with ba00ff colour code).
+--- Open 'biomes' (not 'biomes - Copy') in an image editor (I use GIMP), and colour half the snow biome in the burnt forest colour code (ba00ff). (Use the Paint Brush in GIMP (shortcut "P"), not the Pencil, to draw an outline, then the Bucket (shortcut "Shift-B") to fill in the middle with ba00ff colour code. Then go back to the Paint Brush to tidy up any stray lines).
 --- Pine forest (004000). Desert (ffe477). Burnt forest (ba00ff). Snow (ffffff). Wasteland (ffa800).
 --- Use the colour picker to ensure that there are only these five colours on the map, and not a blend of two colours, for instance where you painted the burnt forest over the snow biome (otherwise I've found the entire map is drawn as wasteland!).
 --- Refer to the Random Gen Previewer to get a sense of where the towns are relative to the burnt forest biome you're creating, and aim to have at least one town in the biome. 
