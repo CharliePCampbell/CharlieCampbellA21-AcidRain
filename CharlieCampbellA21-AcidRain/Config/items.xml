@@ -1,0 +1,331 @@
+<configs>
+
+<!-- SET VARIABLES --> 	
+<!-- (I recommend not changing any values in this particular file, except perhaps the EconomicValue of the acid balm item, depending on your Quest Tier Challenge (for more detail on this, see 'ReadMe' file, and search for "Recommended Settings for each Quest Tier Challenge"). -->
+
+<!-- QUESTS -->
+	<append xpath="/items">
+		<item name="tradersPocketQuest">
+			<property name="DescriptionKey" value="tradersPocketQuestDesc"/>
+			<property name="ItemTypeIcon" value="book"/>
+			<property name="AltItemTypeIcon" value="book_read"/>
+			<property name="CustomIcon" value="schematicMaster"/>
+			<property name="CreativeMode" value="None"/>
+			<property name="HoldType" value="31"/>
+			<property name="Meshfile" value="@:Other/Items/Misc/bookPrefab.prefab"/>
+			<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+			<property name="Material" value="Morganic"/>
+			<property name="Weight" value="5"/>
+			<property name="Stacknumber" value="5"/>
+			<property name="SellableToTrader" value="false"/>
+			<property name="Group" value="Books,Mods,SchematicsOnly"/>
+			<property class="Action0">
+				<property name="Class" value="Eat"/>
+				<property name="Delay" value="1.0"/>
+				<property name="UseAnimation" value="false"/>
+				<property name="Use_time" value="..."/>
+				<property name="Sound_start" value="read_mod"/>
+			<property name="Sound_in_head" value="true"/>
+			</property>
+			<property name="CreativeMode" value="Player"/>
+			<property name="CustomIcon" value="challengeQuestMaster"/>
+			<effect_group tiered="false">
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="varCPCInTheTradersPocket" operation="subtract" value="1">
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+					<requirement name="!HasBuff" buff="buffCPCTheNewYou"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffCPCAcidQuestRead">
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+					<requirement name="!HasBuff" buff="buffCPCTheNewYou"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="buffCPCAcidQuestDropped"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="buffCPCAcidQuestGiven"/>
+			</effect_group>
+		</item>
+	</append>
+
+
+<!-- ************* -->
+
+
+<!-- ACID BALM ITEM -->
+	<append xpath="/items">
+		<item name="acidbalm"> 
+			<property name="Extends" value="medicalAloeCream"/> 
+			<property name="CreativeMode" value="Player"/> 
+			<property name="CustomIcon" value="medicalAloeCream"/> 
+			<property name="CustomIconTint" value="afffaf"/> 
+			<property name="DescriptionKey" value="acidbalmDesc"/>
+			<property name="Tags" value="medical"/>
+			<property name="DisplayType" value="medical"/>
+			<property name="HoldType" value="64"/>
+			<property name="Meshfile" value="@:Other/Items/Health/bandage.FBX"/> 
+			<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+			<property name="Material" value="Morganic"/>
+			<property name="EconomicValue" value="8000"/> <!-- (Acid balm cost variable: Default is 8000 for T1 and T2 Quest Challenges, 12000 for T3, 16000 for T4, and 20000 for T5. NB: 8000 will equate to $24,000 at the tradie prior to any perks being applied) -->
+			<property name="Stacknumber" value="15"/>
+			<property name="Group" value="Science,CFChemicals,Medical"/>
+
+			<property class="Action0">
+				<property name="Class" value="Eat"/>
+				<property name="Delay" value="1.0"/>
+				<property name="Use_time" value="..."/>
+				<property name="Sound_start" value="player_ointment"/>
+			</property>
+			
+			<effect_group tiered="false"> 
+				<!-- Applying acid balm shield and reducing skin acidity -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".varCPCAcidBalmShield" operation="set" value="@varCPCAcidBalmShieldSetTime"> <!-- (NB: This ensures that the player gets a fresh 15mins when applying acid balm while the buff is going from a previous application). -->
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffCPCAcidBalm">
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="buffCPCAcidWaterBurns"/>	
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="subtract" value="@varCPCAcidBalmSAReducer">
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+				<!-- Stats on Skin Acidity update -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="varCPCSAStatsAcidBalms" operation="add" value="@varCPCAcidBalmSAReducer"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="varCPCSAStatsAcidBalmsMinSAOffset" operation="set" value="@varCPCSAMinimum">
+					<requirement name="CVarCompare" cvar="varCPCSkinAcidity" operation="LTE" value="@varCPCSAMinimum"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="varCPCSAStatsAcidBalmsMinSAOffset" operation="subtract" value="@varCPCSkinAcidity">
+					<requirement name="CVarCompare" cvar="varCPCSkinAcidity" operation="LTE" value="@varCPCSAMinimum"/>
+				</triggered_effect>					
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffCPCSAStatsUpdater">
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+			</effect_group>
+		</item>
+	</append>
+
+
+<!-- ************* -->
+
+
+<!-- WATERPROOF HATS -->
+	<append xpath="/items/item[@name='apparelBallCap']">
+		<property name="DescriptionKey" value="apparelBallCapDesc"/> <!-- (This line enables a specific description for this item, including its waterproofness value, rather than a more general description provided by TFPs to cover several items (some of which have no waterproofness)). -->
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferBallCap" operation="set" value="@varCPCWPBallCap"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferBallCap" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</append>	
+
+	<append xpath="/items/item[@name='apparelSkullCap']">
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferSkullCap" operation="set" value="@varCPCWPSkullCap"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferSkullCap" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</append>		
+
+	<append xpath="/items/item[@name='apparelCowboyHat']">
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferCowboyHat" operation="set" value="@varCPCWPCowboyHat"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferCowboyHat" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</append>
+
+
+
+<!-- ************* -->
+
+
+<!-- WATERPROOF COATS -->
+	<append xpath="/items/item[@name='apparelCoatJacketLetterZU']">
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferCollegeJacket" operation="set" value="@varCPCWPCollegeJacket"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferCollegeJacket" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</append>
+
+	<append xpath="/items/item[@name='apparelCoatLeatherDuster']">
+		<property name="DescriptionKey" value="apparelCoatLeatherDusterDesc"/> <!-- (This line enables a specific description for this item, including its waterproofness value). -->
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferDuster" operation="set" value="@varCPCWPDuster"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferDuster" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</append>
+		
+	<append xpath="/items/item[@name='apparelCoatLeatherPoncho']">
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferPoncho" operation="set" value="@varCPCWPPoncho"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferPoncho" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</append>	
+
+	<append xpath="/items/item[@name='apparelCoatPufferCoat']">
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferPuffer" operation="set" value="@varCPCWPPuffer"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferPuffer" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</append>	
+
+
+<!-- ************* -->
+
+
+<!-- WATERPROOF EXTRAS -->
+	<append xpath="/items/item[@name='apparelArmyShirt']"> <!-- (aka the "BDU Top"). -->
+		<property name="DescriptionKey" value="apparelArmyShirtDesc"/> <!-- (This line enables a specific description for this item, including its waterproofness value). -->
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferBDUTop" operation="set" value="@varCPCWPBDUTop"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferBDUTop" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</append>
+	
+	<append xpath="/items/item[@name='apparelGothPants']">
+		<property name="DescriptionKey" value="apparelGothPantsDesc"/> <!-- (This line enables a specific description for this item, including its waterproofness value). -->
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferGothPants" operation="set" value="@varCPCWPGothPants"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferGothPants" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</append>
+	
+
+<!-- ************* -->
+
+
+<!-- WATERPROOF HAZMAT ITEMS -->
+	<set xpath="/items/item[@name='apparelHazmatMask']">
+		<property name="Extends" value="armorClothMaster" param1="CustomIcon"/>
+		<property name="Tags" value="head,armor,armorHead,lightArmor,padded,canHaveCosmetic,lightArmorDeg"/>
+		<property name="EquipSlot" value="Head"/>
+		<property name="EconomicValue" value="3750"/> <!-- This works out to 90,000 purchase price for a T6 item at the tradie's prior to any applied perks (less for lower tiered ones). The value must be 8 times smaller than the EconomicValue of the Hazmat Pants and Jacket to work out to the same 90,000, because the latter are extensions of the HazmatMaster, so for them I can directly change the EconomicValue, whereas for the Hazmat Boots, Gloves and Mask, I've made these extensions of cloth armour, so I can't change this directly without also changing the EconomicValue of every other item of cloth armour. And by adding in this EconomicValue line almost like an afterthought, it multiplies the value by 8 for some reason. -->
+		<property name="DescriptionKey" value="apparelHazmatMaskDesc"/> <!-- (This line enables a specific description for this item, including its waterproofness value). -->
+		<effect_group name="cloth armor">
+			<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/> <!-- This is the Alpha20 approach to mod slots, and I'm keeping it because I'm keen to keep more mod slots for this Alpha21 version for this item -->
+			<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+			<passive_effect name="PhysicalDamageResist" operation="base_add" value="5.1,7.3" tier="1,6"/>
+			<passive_effect name="ElementalDamageResist" operation="base_add" value="5.1,7.3" tier="1,6" tags="heat,electrical"/>
+			<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+			<passive_effect name="DegradationMax" operation="base_set" value="75,150" tier="1,6"/>
+			<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+			<display_value name="dStaminaChangeOT" value="0"/>
+		</effect_group>
+		<property class="UMA">
+			<property name="Mesh" value="armor_hazmat_head"/>
+			<property name="Overlay0" value="armor_hazmat_hood"/>
+			<property name="Layer" value="middle"/>
+			<property name="UISlot" value="Headgear"/>
+			<property name="Mask1" value="Head" param1="inner"/>
+			<property name="Mask3" value="Face" param1="inner"/>
+			<property name="Mask4" value="Face" param1="middle"/>
+			<property name="Mask5" value="Face" param1="outer"/>
+			<property name="ShowAltHair" value="true"/>
+		</property>
+		<effect_group>
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatMask" operation="set" value="@varCPCWPHazmatMask"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatMask" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</set>
+	
+	<append xpath="/items/item[@name='apparelHazmatJacket']">
+		<property name="DescriptionKey" value="apparelHazmatJacketDesc"/> <!-- (This line enables a specific description for this item, including its waterproofness value). -->
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatJacket" operation="set" value="@varCPCWPHazmatJacket"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatJacket" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</append>
+
+	<set xpath="/items/item[@name='apparelHazmatGloves']">
+		<property name="Extends" value="armorClothMaster" param1="CustomIcon"/>
+		<property name="Tags" value="upperbody,hands,armor,armorHands,lightArmor,padded,canHaveCosmetic,lightArmorDeg"/>
+		<property name="EquipSlot" value="Hands"/>
+		<property name="EconomicValue" value="3750"/> <!-- This works out to 90,000 purchase price for a T6 item at the tradie's prior to any applied perks. The value must be 8 times smaller than the EconomicValue of the Hazmat Pants and Jacket to work out to the same 90,000, because the latter are extensions of the HazmatMaster, so for them I can directly change the EconomicValue, whereas for the Hazmat Boots, Gloves and Mask, I've made these extensions of cloth armour, so I can't change this directly without also changing the EconomicValue of every other item of cloth armour. And by adding in this EconomicValue line almost like an afterthought, it multiplies the value by 8 for some reason. -->
+		<property name="DescriptionKey" value="apparelHazmatGlovesDesc"/> <!-- (This line enables a specific description for this item, including its waterproofness value). -->
+		<effect_group name="cloth armor">
+			<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+			<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+			<passive_effect name="PhysicalDamageResist" operation="base_add" value="5.1,7.3" tier="1,6"/>
+			<passive_effect name="ElementalDamageResist" operation="base_add" value="5.1,7.3" tier="1,6" tags="heat,electrical"/>
+			<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+			<passive_effect name="DegradationMax" operation="base_set" value="75,150" tier="1,6"/>
+			<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+			<display_value name="dStaminaChangeOT" value="0"/>
+		</effect_group>
+		<property class="UMA">
+			<property name="Mesh" value="armor_hazmat_hands"/>
+			<property name="Overlay0" value="armor_hazmat_gloves"/>
+			<property name="Layer" value="3"/>
+			<property name="UISlot" value="Gloves"/>
+		</property>
+		<effect_group>
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatGloves" operation="set" value="@varCPCWPHazmatGloves"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatGloves" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>		
+		</effect_group>
+	</set>
+
+	<append xpath="/items/item[@name='apparelHazmatPants']">
+		<property name="DescriptionKey" value="apparelHazmatPantsDesc"/> <!-- (This line enables a specific description for this item, including its waterproofness value). -->
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatPants" operation="set" value="@varCPCWPHazmatPants"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatPants" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</append>
+
+	<set xpath="/items/item[@name='apparelHazmatBoots']">
+		<property name="Extends" value="armorClothMaster" param1="CustomIcon"/>
+		<property name="Tags" value="lowerbody,feet,armor,armorFeet,lightArmor,padded,canHaveCosmetic,lightArmorDeg"/>
+		<property name="EquipSlot" value="Feet"/>
+		<property name="EconomicValue" value="3750"/> <!-- This works out to 90,000 purchase price for a T6 item at the tradie's prior to any applied perks. The value must be 8 times smaller than the EconomicValue of the Hazmat Pants and Jacket to work out to the same 90,000, because the latter are extensions of the HazmatMaster, so for them I can directly change the EconomicValue, whereas for the Hazmat Boots, Gloves and Mask, I've made these extensions of cloth armour (for another reason), so I can't change this directly without also changing the EconomicValue of every other item of cloth armour. And by adding in this EconomicValue line almost like an afterthought, it multiplies the value by 8 for some reason. -->
+		<property name="DescriptionKey" value="apparelHazmatBootsDesc"/> <!-- (This line enables a specific description for this item, including its waterproofness value). -->
+		<effect_group name="cloth armor">
+			<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+			<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+			<passive_effect name="PhysicalDamageResist" operation="base_add" value="5.1,7.3" tier="1,6"/>
+			<passive_effect name="ElementalDamageResist" operation="base_add" value="5.1,7.3" tier="1,6" tags="heat,electrical"/>
+			<passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+			<passive_effect name="DegradationMax" operation="base_set" value="75,150" tier="1,6"/>
+			<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+			<display_value name="dStaminaChangeOT" value="0"/>
+		</effect_group>
+		<property class="UMA">
+			<property name="Mesh" value="armor_hazmat_feet"/>
+			<property name="Overlay0" value="armor_hazmat_boots"/>
+			<property name="Layer" value="0"/>
+			<property name="UISlot" value="Footwear"/>
+		</property>
+		<effect_group>
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatBoots" operation="set" value="@varCPCWPHazmatBoots"/>
+			<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatBoots" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+			<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffCPCUpdatingWaterproofness"/>
+		</effect_group>
+	</set>
+
+	<!-- Hyperthermal Resistance for both non-armour Hazmat items, in line with the Hypothermal Resist of each respective item (so as not to relatively disadvantage the player while being in the desert).-->
+	<setattribute xpath="/items/item[@name='apparelHazmatPants']/effect_group/passive_effect[@name='HyperthermalResist']" name="value">6.5,9.5 </setattribute>
+	<setattribute xpath="/items/item[@name='apparelHazmatJacket']/effect_group/passive_effect[@name='HyperthermalResist']" name="value">6.5,9.5 </setattribute>
+
+	<!-- Increased expense to purchasing Hazmat Pants and Jacket (This works out to 90,000 purchase price for a T6 item at the tradie's prior to any applied perks. It is essential to the purpose of the Acid Rain mod to make purchasing Hazmat gear expensive (though not necessarily impossible), and thus making it the top priority to instead complete missions for the Duke to gain waterproof items as a reward). -->
+	<setattribute xpath="/items/item[@name='apparelHazmatMaster']/property[@name='EconomicValue']" name="value">30000 </setattribute>
+
+</configs>

@@ -1,0 +1,36 @@
+<configs>
+
+<!-- CUSTOMISABLE VARIABLES --> 
+<!-- Trader Open and Close times. (A key constraint to completing the missions (and thus getting the cure in time), is tradie open/close times. I like the challenge of the vanilla open/close times, but feel free to tweak to your liking). -->
+<!-- (Each trader has their own id (provided below), and thus changing open/close times requires doing so for each tradie. Recommend any changes be consistent across the traders). -->
+<!-- Trader Joel, id=1 -->
+<!-- Trader Jen, id=2 -->
+<!-- Trader Bob, id=6 -->
+<!-- Trader Hugh, id=7 -->
+<!-- Trader Rekt, id=8 -->
+<!-- Credit: Thanks to Max Fox for his YouTube tutorial on Trader XML Basics, which has a section on changing tradie times (and his YouTube series in general was very helpful to me as a first-time user of XML) -->
+	
+	<!-- Open time -->
+	<setattribute xpath="//trader_info[@id='1']" name="open_time">6:05</setattribute> <!-- Default 6:05 -->
+	<setattribute xpath="//trader_info[@id='2']" name="open_time">6:05</setattribute> <!-- Default 6:05 -->
+	<setattribute xpath="//trader_info[@id='6']" name="open_time">6:05</setattribute> <!-- Default 6:05 -->
+	<setattribute xpath="//trader_info[@id='7']" name="open_time">6:05</setattribute> <!-- Default 6:05 -->
+	<setattribute xpath="//trader_info[@id='8']" name="open_time">6:05</setattribute> <!-- Default 6:05 -->
+
+	<!-- Close time -->
+	<setattribute xpath="//trader_info[@id='1']" name="close_time">21:50</setattribute> <!-- Default 21:50 -->
+	<setattribute xpath="//trader_info[@id='2']" name="close_time">21:50</setattribute> <!-- Default 21:50 -->
+	<setattribute xpath="//trader_info[@id='6']" name="close_time">21:50</setattribute> <!-- Default 21:50 -->
+	<setattribute xpath="//trader_info[@id='7']" name="close_time">21:50</setattribute> <!-- Default 21:50 -->
+	<setattribute xpath="//trader_info[@id='8']" name="close_time">21:50</setattribute> <!-- Default 21:50 -->
+
+
+<!-- ************* -->
+
+
+<!-- SET VARIABLE --> 	
+	<append xpath="/traders/trader_item_groups/trader_item_group[@name='rareMedicine']">
+		<item name="acidbalm"/> <!-- (I recommend leaving this as a rare item, which makes it a fun find when tradies do stock them, and it doesn't undermine the player's main purpose: to fulfill the Duke's bargain. For a tougher challenge, comment out this section so you never get tradies offering acid balm in their inventory). -->
+	</append>
+
+</configs>

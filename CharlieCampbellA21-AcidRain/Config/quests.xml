@@ -1,0 +1,52 @@
+<configs>
+
+<!-- CUSTOMISABLE VARIABLE -->
+<!-- Required Trader Quest Tiers -->
+<!-- There is only one variable to customise in this file (see next line). -->
+	<append xpath="/quests/quest[@id='quest_tier1complete']"> <!-- Default: quest_tier1complete. To change the challenge, simply replace the "1" with 2, 3, 4 or 5, which correspond to the level of quest tiers completed (per agreed number of unique traders, see the 'buffs' file for this) to get the cure). -->
+
+
+<!-- ************* -->
+
+
+<!-- SET VARIABLES --> 	
+		<reward type="Item" id="tradersPocketQuest" value="1"/> 
+		<reward type="LootItem" id="groupApparelHazmat" value="1"/>
+	</append>
+
+	<!-- Acid balm rewards. -->
+	<append xpath="/quests/quest[@id='quest_tier1complete']">
+		<reward type="Item" id="acidbalm" value="1"/>
+	</append>
+	
+	<append xpath="/quests/quest[@id='quest_tier2complete']">
+		<reward type="Item" id="acidbalm" value="1"/>
+	</append>
+
+	<append xpath="/quests/quest[@id='quest_tier3complete']">
+		<reward type="Item" id="acidbalm" value="1"/>
+	</append>
+	
+	<append xpath="/quests/quest[@id='quest_tier4complete']">
+		<reward type="Item" id="acidbalm" value="1"/>
+	</append>
+
+	<append xpath="/quests/quest[@id='quest_tier5complete']">
+		<reward type="Item" id="acidbalm" value="1"/>
+	</append>
+
+	<append xpath="/quests/quest[@id='quest_whiteRiverCitizen1']">
+		<reward type="Item" id="acidbalm" value="1"/>
+	</append>
+
+
+<!-- ************* -->
+
+
+<!-- NOOBS NEED LOVE TOO VARIABLE -->
+<!-- The following code is commented out by default. This mod is designed to be a challenge, but if getting burned so frequently is proving too frustrating, enable the code below by removing the comment arrow before the first "append" and after the last one, and you'll get a Hazmat item when you meet the first tradie. -->
+	<!-- <append xpath="/quests/quest[@id='quest_whiteRiverCitizen1']">
+		<reward type="LootItem" id="groupApparelHazmat" value="1"/>
+	</append> -->
+
+</configs>

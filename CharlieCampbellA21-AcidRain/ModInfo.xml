@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+	<Name value="AcidRainMod" />
+	<DisplayName value="Charlie Campbell's Acid Rain Mod" />
+	<Description value="This is a gameplay mod that creates a race against time. It adds waterproofness to some clothing, and burns the player when wetness exceeds waterproofness. It adds a deadline for the player to complete a number of quests to earn the cure before it becomes useless." />
+	<Author value="Charlie Campbell" />
+	<Version value="1.0.0.1" />
+	<Website value="" />
+</xml>

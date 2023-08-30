@@ -1,0 +1,39 @@
+<configs>
+
+<!-- SET VARIABLES --> 	
+<!-- (I recommend not changing any values in this particular file). -->
+
+	<!-- This removes the military fiber from this loot group, which ensures that when the trader rewards the player for completing a tier quest to the agreed level, s/he will always be rewarded with a hazmat (i.e. highly waterproof) item.  -->
+	<!-- It doesn't protect them from being rewarded with the same hazmat item they already have from a previous reward, but that's a risk that I like, just not the military fiber risk. -->
+	<set xpath="/lootcontainers/lootgroup[@name='groupApparelHazmat']">
+		<item name="apparelHazmatBoots"/>
+		<item name="apparelHazmatPants"/>
+		<item name="apparelHazmatJacket"/>
+		<item name="apparelHazmatGloves"/>
+		<item name="apparelHazmatMask"/>
+	</set>
+
+	<!-- The next two blocks of code considerably drop the chances of getting hazmat gear in boss loot (which reduces the chances of undermining the purpose of the mod, but also makes it a massive win for the player if they do get it).  -->
+	<set xpath="/lootcontainers/lootgroup[@name='groupZpackStrong02']">
+		<item group="groupApparelClothes" loot_prob_template="low"/>
+		<item group="groupApparelHazmat" loot_prob_template="veryLow"/> <!-- (I recommend keeping this as veryLow, because otherwise the player will get heaps of Hazmat gear on later hoard nights, and this will undermine the purpose of playing the mod). -->
+		<item group="booksAllScaled" loot_prob_template="medHigh"/>
+		<item group="groupToolsTiered" loot_prob_template="medHigh"/>
+		<item group="groupArmorScaled" loot_prob_template="medHigh"/>
+		<item group="groupCraftingRare" loot_prob_template="med"/>
+		<item name="armorMiningHelmet" mods="modArmorHelmetLight" mod_chance="1" loot_prob_template="low"/>
+		<item name="armorSwatHelmet" mods="modArmorHelmetLight" mod_chance=".2" loot_prob_template="veryLow"/>
+	</set>
+
+	<set xpath="/lootcontainers/lootgroup[@name='groupZpackBoss02']">
+		<item group="groupApparelClothes" loot_prob_template="low"/>
+		<item group="groupApparelHazmat" loot_prob_template="veryLow"/> <!-- (I recommend keeping this as veryLow, because otherwise the player will get heaps of Hazmat gear on later hoard nights, and this will undermine the purpose of playing the mod). -->
+		<item group="booksAllScaled" loot_prob_template="medHigh"/>
+		<item group="groupToolsTiered" loot_prob_template="medHigh"/>
+		<item group="groupArmorScaled" loot_prob_template="medHigh"/>
+		<item group="groupCraftingRare" loot_prob_template="med"/>
+		<item name="armorMiningHelmet" mods="modArmorHelmetLight" mod_chance="1" loot_prob_template="veryLow"/>
+		<item name="armorSwatHelmet" mods="modArmorHelmetLight" mod_chance=".2" loot_prob_template="low"/>
+	</set>
+
+</configs>

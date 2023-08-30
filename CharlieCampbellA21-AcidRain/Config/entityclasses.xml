@@ -1,0 +1,18 @@
+<configs>
+
+<!-- SET VARIABLES --> 	
+<!-- (I recommend not changing any values in this particular file). -->
+
+	<setattribute xpath="/entity_classes/entity_class[@name='playerMale' or @name='playerFemale']/property[@name='Buffs']" name="value">buffStatusCheck01,buffStatusCheck02,buffCPCAcidWaterOverview </setattribute>
+
+	<setattribute xpath="/entity_classes/entity_class[@name='playerMale' or @name='playerFemale']/effect_group/triggered_effect[@trigger='onSelfEnteredGame']" name="buff">buffStatusCheck01,buffStatusCheck02,buffCPCAcidWaterOverview </setattribute>
+
+	<setattribute xpath="/entity_classes/entity_class[@name='playerMale']/property[@name='ItemsOnEnterGame.GameModeSurvival']" name="value">drinkJarBoiledWater=2,foodCanChili,medicalFirstAidBandage,meleeToolTorch,keystoneBlock </setattribute> <!-- This simply removes the note from the Duke, which implies a different story to our one here, so it breaks immersion -->
+
+	<append xpath="/entity_classes/entity_class[@name='playerMale' or @name='playerFemale']">	
+		<effect_group>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffCPCVariableInitiator"/>
+		</effect_group>
+	</append>
+
+</configs>

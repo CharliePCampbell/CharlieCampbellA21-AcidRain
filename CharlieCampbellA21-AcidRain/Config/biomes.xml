@@ -1,0 +1,66 @@
+<configs>
+
+<!-- CUSTOMISABLE VARIABLES -->
+<!-- I've tweaked the weather slightly so the desert is drier than the pine forest. Also, the burnt forest, then snow biome, then wasteland are increasingly wetter than the pine forest. -->
+<!-- Feel free to tweak the "prob" numbers below, particularly if after a playthrough you don't like the balance. I've included both the Fun Pimps' and my defaults in case that's handy.-->
+<!-- See my notes below for the logic behind my default settings, which might inform your changes. -->
+<!-- Credit: Thanks to Doughs for much of the following section, as I learned how to tweak the weather settings from observing his Punishing Weather mod. -->
+
+<!--WEATHER TWEAKS-->
+	<!--Pine Forest biome weather-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='pine_forest']/weather[@name='default']" name="prob">80 </setattribute> <!--FunPimps Default: 83. Charlie Default: 80-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='pine_forest']/weather[@name='fog']" name="prob">7 </setattribute> <!--FunPimps Default: 7. Charlie Default: 7-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='pine_forest']/weather[@name='rain']" name="prob">9 </setattribute> <!--FunPimps Default: 7. Charlie Default: 9-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='pine_forest']/weather[@name='storm']" name="prob">4 </setattribute> <!--FunPimps Default: 3. Charlie Default: 4-->
+
+	<!--Desert biome weather-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='desert']/weather[@name='default']" name="prob">93 </setattribute> <!--FunPimps Default: 87. Charlie Default: 93-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='desert']/weather[@name='rain']" name="prob">5 </setattribute> <!--FunPimps Default: 8. Charlie Default: 5-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='desert']/weather[@name='storm']" name="prob">2 </setattribute> <!--FunPimps Default: 5. Charlie Default: 2-->
+	
+	<!--Burnt Forest biome weather-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='burnt_forest']/weather[@name='default']" name="prob">78 </setattribute> <!--FunPimps Default: 75. Charlie Default: 78-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='burnt_forest']/weather[@name='rain']" name="prob">15 </setattribute> <!--FunPimps Default: 15. Charlie Default: 15-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='burnt_forest']/weather[@name='storm']" name="prob">7 </setattribute> <!--FunPimps Default: 10. Charlie Default: 7-->
+
+	<!--Snow biome weather-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='snow']/weather[@name='default']" name="prob">50 </setattribute> <!--FunPimps Default: 44. Charlie Default: 50-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='snow']/weather[@name='fog']" name="prob">8 </setattribute> <!--FunPimps Default: 8. Charlie Default: 8-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='snow']/weather[@name='snow']" name="prob">26 </setattribute> <!--FunPimps Default: 40. Charlie Default: 26-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='snow']/weather[@name='storm']" name="prob">16 </setattribute> <!--FunPimps Default: 8. Charlie Default: 16-->
+
+	<!--Wasteland biome weather-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='wasteland']/weather[@name='default']" name="prob">40 </setattribute> <!--FunPimps Default: 80. Charlie Default: 40-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='wasteland']/weather[@name='rain']" name="prob">34 </setattribute> <!--FunPimps Default: 15. Charlie Default: 34-->
+	<setattribute xpath="/worldgeneration/biomes/biome[@name='wasteland']/weather[@name='storm']" name="prob">26 </setattribute> <!--FunPimps Default: 5. Charlie Default: 26-->
+	
+	
+<!--PRECIPITATION TWEAKS-->	
+	<!--Pine Forest biome precipitation tweak-->
+	<set xpath="/worldgeneration/biomes/biome[@name='pine_forest']/weather[@name='rain']/Precipitation/@min">20 </set> <!--FunPimps Default: 30. Charlie Default: 20-->
+	<set xpath="/worldgeneration/biomes/biome[@name='pine_forest']/weather[@name='rain']/Precipitation/@max">70 </set> <!--FunPimps Default: 80. Charlie Default: 70-->
+	<set xpath="/worldgeneration/biomes/biome[@name='pine_forest']/weather[@name='storm']/Precipitation/@min">80 </set> <!--FunPimps Default: 90. Charlie Default: 80-->
+	<set xpath="/worldgeneration/biomes/biome[@name='pine_forest']/weather[@name='storm']/Precipitation/@max">100 </set> <!--FunPimps Default: 100. Charlie Default: 100-->
+	
+	<!--Burnt Forest biome precipitation tweak-->
+	<set xpath="/worldgeneration/biomes/biome[@name='burnt_forest']/weather[@name='rain']/Precipitation/@min">30 </set> <!--FunPimps Default: 30. Charlie Default: 30-->
+	<set xpath="/worldgeneration/biomes/biome[@name='burnt_forest']/weather[@name='rain']/Precipitation/@max">70 </set> <!--FunPimps Default: 80. Charlie Default: 70-->
+	<set xpath="/worldgeneration/biomes/biome[@name='burnt_forest']/weather[@name='storm']/Precipitation/@min">80 </set><!--FunPimps Default: 90. Charlie Default: 80-->
+	<set xpath="/worldgeneration/biomes/biome[@name='burnt_forest']/weather[@name='storm']/Precipitation/@max">100 </set> <!--FunPimps Default: 100. Charlie Default: 100-->
+	
+	<!--Wasteland biome precipitation tweak-->
+	<set xpath="/worldgeneration/biomes/biome[@name='wasteland']/weather[@name='rain']/Precipitation/@min">30 </set> <!--FunPimps Default: 30. Charlie Default: 30-->
+	<set xpath="/worldgeneration/biomes/biome[@name='wasteland']/weather[@name='rain']/Precipitation/@max">70 </set> <!--FunPimps Default: 80. Charlie Default: 70-->
+	<set xpath="/worldgeneration/biomes/biome[@name='wasteland']/weather[@name='storm']/Precipitation/@min">80 </set><!--FunPimps Default: 90. Charlie Default: 80-->
+	<set xpath="/worldgeneration/biomes/biome[@name='wasteland']/weather[@name='storm']/Precipitation/@max">100 </set> <!--FunPimps Default: 100. Charlie Default: 100-->
+
+<!-- LOGIC BEHIND THE DEFAULT SETTINGS -->
+<!-- Each biome (in the order above) largely speaking gets progressively harder in terms of rainfall frequency, and skin acidity modifiers (see 'buffs' file). -->
+<!-- Storms are 80-100% precipitation, and rain/snow is 30-70%.  -->
+<!-- Let's assume the player starts in the pine or desert biomes and completes at least the first two traders' tier quests there. -->
+<!-- If so, the player's waterproofness will be at its lowest, and hence both rain and storm percentages will be a threat. -->
+<!-- By the time the player starts operating in the burnt forest, they should have middling waterproofness (say around 40-50), and thus only a portion of the rain will be a threat (i.e. over 40% precipitation), and all the storm values will be a threat. -->
+<!-- By the late game, the player will be in the snow and wasteland biomes, and their waterproofness will be around the 60+ mark, and thus only a small (upper) portion of rain values will be a threat, and still all the storm values will be. -->
+<!-- So the "rain" values in the snow and wasteland are designed to add to the threat for early game players to even traverse them, while having little effect on late game players, for whom only the "storm" values are really relevant. -->
+
+</configs>

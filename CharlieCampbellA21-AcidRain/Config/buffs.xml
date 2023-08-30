@@ -1,0 +1,795 @@
+<configs>
+
+<!-- HOW TO CUSTOMISE YOUR ACID RAIN PLAYTHROUGH -->
+<!-- CUSTOMISABLE VARIABLES -->
+<!-- OVERVIEW STATUS CHECKER BUFF -->
+<!-- UNIQUE TRADERS -->
+<!-- CURE COUNTDOWN -->
+<!-- SKIN ACIDITY, NIGHTLY INCREASES TO SKIN ACIDITY, AND STATS -->
+<!-- BIOME MODIFIERS TO SKIN ACIDITY -->
+<!-- ACID BURNS -->
+<!-- ACID BALM -->
+<!-- WATERPROOFNESS -->
+<!-- GAME OUTCOME - CURED OR TOO LATE? -->
+
+
+<!-- ************* -->
+
+
+<!-- HOW TO CUSTOMISE YOUR ACID RAIN PLAYTHROUGH -->
+<!-- Explore the 'Customisable Variables' sections, which are at the top of both this 'buffs' file, the 'quests' file. -->
+<!-- Further customisation options can be found in the 'biomes', 'items' and 'traders' files. -->
+<!-- Changes are best made wherever you see the word 'Default'. -->
+<!-- Changes will only be applied when you start a new game, as all the customisable variables are set in a hidden buff that lasts for the first three seconds of a new playthrough. -->
+<!-- See a few lines below for the beginning of this file's customisable section, and remember to also check the 'quests' file in particular, as this sets part of the basic challenge. -->
+
+	<append xpath="/buffs">
+		<buff name="buffCPCVariableInitiator" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="3"/>
+			<update_rate value="1"/>
+			<effect_group>	
+
+			
+<!-- CUSTOMISABLE VARIABLES --> <!-- (The first two subsections here handle the general challenge of how many missions you'll be doing, and to what deadline. The remaining subsections handle finer aspects of difficulty). -->
+				<!-- Unique Traders --> <!-- (i.e. How many unique traders do you need to complete missions for before the Duke gives you the cure?) -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCInTheTradersPocketSetTraderNumber" operation="set" value="5"/> <!-- Default 5. (This is the number of unique traders for which you have to complete their missions up to a certain tier, until the Duke hands over the cure. Must be set to 1, 2, 3, 4 or 5). -->
+
+				<!-- Cure Countdown --> <!-- (NB: This countdown requires nightfall each day. You can vary the length of night with other mods, but ensure there is at least one hour of nighttime for this mod to work). -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCCureCountdown" operation="set" value="18"/> <!-- Default: 18. (This is the days remaining before the player's condition is incurable. Recommend 18 days for all five unique traders' T1 quests completed (see the 'quests' file to set as T1), 28 days for T2 quests completed, 42 days for T3 quests completed, 60 days for T4 quests completed, and maybe 100 days for T5 quests completed (untested). These are just a guideline based on what works for me, so they might be a good place for you to start. But of course, set the number to suit your playstyle. I recommend setting yourself a challenge, as it makes the final few days exciting, and is central to this mod). -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCCureDeadlineFirstWarningSetDay" operation="set" value="2"/> <!-- Default: 2. (I recommend not changing this. This is when the first warning triggers, telling the player how many days they have before the cure is useless). -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCCureDeadlineLastWarningSetDay" operation="set" value="1"/> <!-- Default: 1. (I recommend not changing this. This is when the final warning triggers, telling the player how many days they have before the cure is useless). -->
+				
+				<!-- Skin Acidity buff variables -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSkinAcidity" operation="set" value="3.00"/> <!-- Default: 3.00 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCAcidBurnExitModifier" operation="set" value="2"/> <!-- Default: 2. This means you'll stop burning when your wetness percentage drops below half your Waterproofness number (i.e. it's divided by "2"). Recommended customisation range: 1.1 to 5 (easier to harder). -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSAMinimum" operation="set" value="2.00"/> <!-- Default: 2.00. (This is the lowest your Skin Acidity will go, so if you apply acid balm (which by default lowers your skin acidity by 1) when your skin acidity is at say 2.50, it won't go down to 1.50, but rather it will go to 2.00. Increase this for a greater challenge). -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCAcidBurnPer" operation="set" value="0.15"/> <!-- Default: 0.15. (This determines how much is added to your Skin Acidity value each time you are burned by the acid water). -->
+
+				<!-- Nightly Increases to Skin Acidity --> <!-- (This gradation of increases is designed to keep the base Skin Acidity value within challenging but not impossible limits. For example, Value2 applies when your base Skin Acidity (i.e. not including the biome skin acidity modifiers) is between Stage1 and Stage2, so if you're using the default values, and your base Skin Acidity is at 6.00, then come nightfall it will increase by 0.30) -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSANightlyIncreasesValue1" operation="set" value="0.35"/> <!-- Default 0.35. (Increase these 'values' 1-5 for a greater challenge) -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSANightlyIncreasesStage1" operation="set" value="5"/> <!-- Default 5 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSANightlyIncreasesValue2" operation="set" value="0.30"/> <!-- Default 0.30 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSANightlyIncreasesStage2" operation="set" value="7"/> <!-- Default 7 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSANightlyIncreasesValue3" operation="set" value="0.25"/> <!-- Default 0.25 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSANightlyIncreasesStage3" operation="set" value="9"/> <!-- Default 9 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSANightlyIncreasesValue4" operation="set" value="0.20"/> <!-- Default 0.20 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSANightlyIncreasesStage4" operation="set" value="11"/> <!-- Default 11 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSANightlyIncreasesValue5" operation="set" value="0.15"/> <!-- Default 0.15 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSANightlyIncreasesStage4" operation="set" value="13"/> <!-- Default 13 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSANightlyIncreasesValue5" operation="set" value="0.10"/> <!-- Default 0.10 -->
+
+				<!-- Biome Modifiers to Skin Acidity --> 
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSADesertIncrease" operation="set" value="0.75"/> <!-- Default: 0.75. (Increase these numbers for a greater challenge) -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSABurntForestIncrease" operation="set" value="1.50"/> <!-- Default: 1.50 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSASnowIncrease" operation="set" value="2.25"/> <!-- Default: 2.25 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSAWastelandIncrease" operation="set" value="3.00"/> <!-- Default: 3.00 -->
+
+				<!-- Acid balm -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCAcidBalmShieldSetTime" operation="set" value="900"/> <!-- Default: 900. (This is 15mins of invulnerability to acid rain (i.e. 900 seconds). Reduce for a greater challenge) -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCAcidBalmSAReducer" operation="set" value="1.00"/> <!-- Default: 1.00. (This reduces your skin acidity by 1 when you apply the acid balm. Reduce this for a greater challenge. I recommend setting it to 0.8 for the T3 Quest challenge, and 0.75 for the T4 Quest Challenge (as these challenges are in a sweet spot of having played enough days to afford acid balm, yet still being tasked with relatively quick missions), but for T1, T2 and T5 Quest challenges, I recommend keeping it at 1.00, at least on your first few playthroughs until you want to increase the challenge). -->
+
+				<!-- Waterproofness values for items --> <!-- (Recommend playing a few playthroughs before tweaking these numbers, as they are balanced to account for several factors) -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPStartingWaterproofness" operation="set" value="15"/> <!-- Default: 15. (I recommend keeping this at 15, because the player's 'wetness' only displays at 15% or over) -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPBallCap" operation="set" value="2"/> <!-- Default 2 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPSkullCap" operation="set" value="3"/> <!-- Default 3 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPCowboyHat" operation="set" value="4"/> <!-- Default 4 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPModBallCap" operation="set" value="2"/> <!-- Default 2 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPModSkullCap" operation="set" value="3"/> <!-- Default 3 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPModCowboyHat" operation="set" value="4"/> <!-- Default 4 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPCollegeJacket" operation="set" value="8"/> <!-- Default 8 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPDuster" operation="set" value="9"/> <!-- Default 9 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPPoncho" operation="set" value="10"/> <!-- Default 10 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPPuffer" operation="set" value="11"/> <!-- Default 11 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPBDUTop" operation="set" value="4"/> <!-- Default 4 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPGothPants" operation="set" value="4"/> <!-- Default 4 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPHazmatMask" operation="set" value="11"/> <!-- Default 11 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPHazmatJacket" operation="set" value="20"/> <!-- Default 20 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPHazmatGloves" operation="set" value="11"/> <!-- Default 11 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPHazmatPants" operation="set" value="11"/> <!-- Default 11 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPHazmatBoots" operation="set" value="11"/> <!-- Default 11 -->
+
+				<!-- Game outcome --> <!-- (I recommend ignoring this subsection. The numbers can be tweaked, but for little gain). -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCCDeadlineExpiredSetTime" operation="set" value="30"/> <!-- Default 30. (I recommend leaving this at 30 seconds. It's how long until it triggers the next buff called "TheNewYou"). -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCAcidualHealingSetTime" operation="set" value="15"/> <!-- Default 15. (I recommend leaving this at 15 seconds. It's how long until it triggers the next buff called "TheOldYou"). -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCTradersPaidSetTime" operation="set" value="15"/> <!-- Default 15. (I recommend leaving this at 15 seconds. It's how long until it triggers the next buff called "AcidualHealing"). -->
+
+<!-- ************* -->
+
+				<!-- SET VARIABLES (CHANGING THESE VALUES WILL LIKELY UNDERMINE THE MOD) -->
+				<!-- Variables for transferring items' Waterproofness depending on whether worn or not (These should all be set to zero. They are placeholder variables for later use)-->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCUpdatingWaterproofness" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferBallCap" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferSkullCap" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferCowboyHat" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferModBallCap" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferModSkullCap" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferModCowboyHat" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferCollegeJacket" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferDuster" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferPoncho" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferPuffer" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferBDUTop" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferGothPants" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatMask" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatJacket" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatGloves" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatPants" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWPTransferHazmatBoots" operation="set" value="0"/>
+				<!-- Initiating Waterproofness variables -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCWaterproofness" operation="set" value="@varCPCWPStartingWaterproofness"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$varCPCAcidBurnExit" operation="set" value="15.00"/> <!-- (This can be any value really, as it is updated during the game before use. It's here just to declare the variable) -->
+				<!-- Initiating Stats variables --> <!-- (Changing these will undermine the stats provided throughout the game). -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSAStatsStart" operation="set" value="@varCPCSkinAcidity"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSAStatsBurns" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSAStatsNightly" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSAStatsAcidBalms" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSAStatsAcidBalmsMinSAOffset" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSAStatsTotalBase" operation="set" value="0"/>
+				<!-- Initiating core Acid Rain buffs -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffCPCCureCountdown"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffCPCWaterproofness"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffCPCSkinAcidity"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffCPCInTheTradersPocket"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffCPCSAStats"/>
+			</effect_group>
+		</buff>
+	</append>
+
+
+<!-- ************* -->
+
+
+<!-- OVERVIEW STATUS CHECKER BUFF -->
+	<insertBefore xpath="/buffs/buff[@name='buffStatusCheck01']">
+		<buff name="buffCPCAcidWaterOverview" hidden="true" remove_on_death="false"> 
+			<update_rate value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffCPCAcidWaterBurns">
+					<requirement name="HasBuff" buff="buffElementWet"/>
+					<requirement name="CVarCompare" cvar="$WetTempModifierDisplay" operation="GT" value="@varCPCWaterproofness"/> <!-- NB: The $WetTempModifierDisplay variable is TFP's Wetness display variable  -->
+					<requirement name="!HasBuff" buff="buffCPCAcidBalm"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCAcidWaterBurns">
+					<requirement name="CVarCompare" cvar="$WetTempModifierDisplay" operation="LTE" value="@$varCPCAcidBurnExit"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCAcidWaterBurns">
+					<requirement name="!HasBuff" buff="buffElementWet"/>-->
+					<requirement name="!HasBuff" buff="buffCPCAcidBalm"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCAcidWaterBurns">
+					<requirement name="!HasBuff" buff="buffElementWet"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCAcidWaterBurns">
+					<requirement name="HasBuff" buff="buffCPCAcidBalm"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffCPCSANightlyIncreases">
+					<requirement name="IsNight"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCSANightlyIncreases">
+					<requirement name="!IsNight"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffCPCCureCountdownReducer">
+					<requirement name="IsNight"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+					<requirement name="!HasBuff" buff="buffCPCTheNewYou"/>
+				</triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCCureCountdownReducer">
+					<requirement name="!IsNight"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffCPCSADesertIncrease">
+					<requirement name="InBiome" biome="05"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCSADesertIncrease">
+					<requirement name="!InBiome" biome="05"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffCPCSABurntForestIncrease">
+					<requirement name="InBiome" biome="09"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCSABurntForestIncrease">
+					<requirement name="!InBiome" biome="09"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffCPCSASnowIncrease">
+					<requirement name="InBiome" biome="01"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCSASnowIncrease">
+					<requirement name="!InBiome" biome="01"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffCPCSAWastelandIncrease">
+					<requirement name="InBiome" biome="08"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCSAWastelandIncrease">
+					<requirement name="!InBiome" biome="08"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffCPCAcidQuestGiven">
+					<requirement name="PlayerItemCount" item_name="tradersPocketQuest" operation="GTE" value="1"/>
+					<requirement name="!HasBuff" buff="buffCPCTheNewYou"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffCPCAcidQuestDropped">
+					<requirement name="PlayerItemCount" item_name="tradersPocketQuest" operation="LT" value="1"/>
+					<requirement name="HasBuff" buff="buffCPCAcidQuestGiven"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidQuestRead"/>
+					<requirement name="!HasBuff" buff="buffCPCTheNewYou"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCAcidQuestDropped">
+					<requirement name="PlayerItemCount" item_name="tradersPocketQuest" operation="GTE" value="1"/>
+					<requirement name="HasBuff" buff="buffCPCAcidQuestDropped"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffCPCTheNewYouIsNoFun">
+					<requirement name="IsNight"/>
+					<requirement name="HasBuff" buff="buffCPCTheNewYou"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>	
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCTheNewYouIsNoFun">
+					<requirement name="!IsNight"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+	</insertBefore>
+	
+
+<!-- ************* -->
+
+
+<!-- UNIQUE TRADERS -->
+	<append xpath="/buffs">
+		<buff name="buffCPCInTheTradersPocket" name_key="buffCPCInTheTradersPocketName" description_key="buffCPCInTheTradersPocketDesc" showonhud="false" icon="ui_game_symbol_compass" icon_color="211,211,211" remove_on_death="false">
+			<stack_type value="ignore"/>
+			<display_value value="varCPCInTheTradersPocket"/><display_value_key value="{0:0}"/>
+			<update_rate value="3"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCInTheTradersPocket" operation="set" value="@varCPCInTheTradersPocketSetTraderNumber"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffCPCTradersPaid">
+					<requirement name="CVarCompare" cvar="varCPCInTheTradersPocket" operation="LTE" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCInTheTradersPocket">
+					<requirement name="CVarCompare" cvar="varCPCInTheTradersPocket" operation="LTE" value="0"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCTradersPaid" name_key="buffCPCTradersPaidName" description_key="buffCPCTradersPaidDesc" icon="ui_game_symbol_trophy" icon_color="0,240,0" icon_blink="true" remove_on_death="false">
+			<stack_type value="ignore"/> 
+			<display_value value=".varCPCTradersPaid"/><display_value_format value="time"/>
+			<update_rate value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".varCPCTradersPaid" operation="set" value="@varCPCTradersPaidSetTime"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".varCPCTradersPaid" operation="subtract" value="1"/> <!-- (NB: This is just a timer). -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCTradersPaid">
+					<requirement name="CVarCompare" cvar=".varCPCTradersPaid" operation="LTE" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCPCAcidualHealing"/>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCAcidQuestGiven" name_key="buffCPCAcidQuestGivenName" description_key="buffCPCAcidQuestGivenDesc" tooltip_key="buffCPCAcidQuestGivenTooltip" icon="ui_game_symbol_compass" icon_color="0,240,0" icon_blink="true" remove_on_death="false">
+			<stack_type value="ignore"/> 
+			<duration value="30"/>
+			<update_rate value="1"/>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCAcidQuestRead" name_key="buffCPCAcidQuestReadName" description_key="buffCPCAcidQuestReadDesc" icon="ui_game_symbol_check" icon_color="0,240,0" icon_blink="false" remove_on_death="false">
+			<stack_type value="ignore"/> 
+			<duration value="31"/>
+			<update_rate value="1"/>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCAcidQuestDropped" name_key="buffCPCAcidQuestDroppedName" description_key="buffCPCAcidQuestDroppedDesc" tooltip_key="buffCPCAcidQuestDroppedTooltip" icon="ui_game_symbol_compass" icon_color="255,0,0" icon_blink="true" remove_on_death="false">
+			<stack_type value="ignore"/> 
+			<duration value="30"/>
+			<update_rate value="1"/>
+		</buff>
+	</append>
+
+
+<!-- ************* -->
+
+
+<!-- CURE COUNTDOWN -->
+	<append xpath="/buffs">
+		<buff name="buffCPCCureCountdown" name_key="buffCPCCureCountdownName" description_key="buffCPCCureCountdownDesc" showonhud="false" icon="ui_game_symbol_clock" icon_color="211,211,211" remove_on_death="false">
+			<stack_type value="ignore"/>
+			<display_value value="varCPCCureCountdown"/><display_value_key value="{0:0}"/>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCCureCountdownReducer" hidden="true" remove_on_death="false"> 
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCCureCountdown" operation="subtract" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffCPCCureDeadlineFirstWarning">
+					<requirement name="CVarCompare" cvar="varCPCCureCountdown" operation="Equals" value="@varCPCCureDeadlineFirstWarningSetDay"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffCPCCureDeadlineLastWarning">
+					<requirement name="CVarCompare" cvar="varCPCCureCountdown" operation="Equals" value="@varCPCCureDeadlineLastWarningSetDay"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffCPCDeadlineExpired"> <!-- (NB: The 'DeadlineExpired' buff can be found in the 'Game Outcome' section).-->
+					<requirement name="CVarCompare" cvar="varCPCCureCountdown" operation="Equals" value="0"/>
+					<requirement name="!HasBuff" buff="buffCPCAcidualHealing"/>
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCCureDeadlineFirstWarning" name_key="buffCPCCureDeadlineFirstWarningName" description_key="buffCPCCureDeadlineFirstWarningDesc" icon="ui_game_symbol_clock" icon_color="255,128,0" remove_on_death="false">
+			<stack_type value="ignore"/>
+			<display_value value="varCPCCureCountdown"/><display_value_key value="{0:0}"/>
+			<update_rate value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCPCCureCountdown"/> <!-- (NB: This is to simply remove the now unnecessary buff display showing the number of days remaining in silver, when we have another buff display (in orange) taking its place). -->
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="player#vomit" play_in_head="true"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="triggerFatigued"/>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCCureDeadlineLastWarning" name_key="buffCPCCureDeadlineLastWarningName" description_key="buffCPCCureDeadlineLastWarningDesc" icon="ui_game_symbol_clock" icon_color="255,0,0" remove_on_death="false">
+			<stack_type value="ignore"/> 
+			<display_value value="varCPCCureCountdown"/><display_value_key value="{0:0}"/>
+			<update_rate value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCPCCureDeadlineFirstWarning"/> <!-- (NB: This is to simply remove the now unnecessary buff display showing the first warning). -->
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="player#vomit" play_in_head="true"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="triggerFatigued"/>
+			</effect_group>
+		</buff>
+	</append>
+
+
+<!-- ************* -->
+
+
+<!-- SKIN ACIDITY, NIGHTLY INCREASES TO SKIN ACIDITY, AND STATS -->
+	<append xpath="/buffs">
+		<buff name="buffCPCSkinAcidity" name_key="buffCPCSkinAcidityName" description_key="buffCPCSkinAcidityDesc" icon="ui_game_symbol_chemistry" icon_color="211,211,211" icon_blink="false" remove_on_death="false"> 
+			<stack_type value="ignore"/>
+			<display_value value="varCPCSkinAcidity"/><display_value_key value="{0:0.00}"/>
+			<update_rate value="3"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="set" value="@varCPCSAMinimum">
+					<requirement name="CVarCompare" cvar="varCPCSkinAcidity" operation="LTE" value="@varCPCSAMinimum"/>
+					<requirement name="CVarCompare" cvar="varCPCSkinAcidity" operation="GT" value="0.01"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCSANightlyIncreases" hidden="true" remove_on_death="false"> 
+			<effect_group> <!-- This block removes any skin acidity biome modifier so we can then work with just the base skin acidity value in determining what the nightly increase should be (i.e., this should not be affected by what biome the player is in). -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSANightlyIncreases" operation="set" value="@varCPCSkinAcidity"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSANightlyIncreases" operation="subtract" value="@varCPCSADesertIncrease">
+					<requirement name="InBiome" biome="05"/> <!-- Desert SA modifier subtracted -->
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSANightlyIncreases" operation="subtract" value="@varCPCSABurntForestIncrease">
+					<requirement name="InBiome" biome="09"/> <!-- Burnt Forest SA modifier subtracted -->
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSANightlyIncreases" operation="subtract" value="@varCPCSASnowIncrease">
+					<requirement name="InBiome" biome="01"/> <!-- Snow SA modifier subtracted -->
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSANightlyIncreases" operation="subtract" value="@varCPCSAWastelandIncrease">
+					<requirement name="InBiome" biome="08"/> <!-- Wasteland SA modifier subtracted -->
+				</triggered_effect>
+				
+				<!-- Skin Acidity value update -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="add" value="@varCPCSANightlyIncreasesValue1">
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="LT" value="@varCPCSANightlyIncreasesStage1"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="add" value="@varCPCSANightlyIncreasesValue2">
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="GTE" value="@varCPCSANightlyIncreasesStage1"/>
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="LT" value="@varCPCSANightlyIncreasesStage2"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="add" value="@varCPCSANightlyIncreasesValue3">
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="GTE" value="@varCPCSANightlyIncreasesStage2"/>
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="LT" value="@varCPCSANightlyIncreasesStage3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="add" value="@varCPCSANightlyIncreasesValue4">
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="GTE" value="@varCPCSANightlyIncreasesStage3"/>
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="LT" value="@varCPCSANightlyIncreasesStage4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="add" value="@varCPCSANightlyIncreasesValue5">
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="GTE" value="@varCPCSANightlyIncreasesStage4"/>
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="LT" value="@varCPCSANightlyIncreasesStage5"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="add" value="@varCPCSANightlyIncreasesValue6">
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="GTE" value="@varCPCSANightlyIncreasesStage5"/>
+				</triggered_effect>
+
+				<!-- Stats on Skin Acidity update -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSAStatsNightly" operation="add" value="@varCPCSANightlyIncreasesValue1">
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="LT" value="@varCPCSANightlyIncreasesStage1"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSAStatsNightly" operation="add" value="@varCPCSANightlyIncreasesValue2">
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="GTE" value="@varCPCSANightlyIncreasesStage1"/>
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="LT" value="@varCPCSANightlyIncreasesStage2"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSAStatsNightly" operation="add" value="@varCPCSANightlyIncreasesValue3">
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="GTE" value="@varCPCSANightlyIncreasesStage2"/>
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="LT" value="@varCPCSANightlyIncreasesStage3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSAStatsNightly" operation="add" value="@varCPCSANightlyIncreasesValue4">
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="GTE" value="@varCPCSANightlyIncreasesStage3"/>
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="LT" value="@varCPCSANightlyIncreasesStage4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSAStatsNightly" operation="add" value="@varCPCSANightlyIncreasesValue5">
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="GTE" value="@varCPCSANightlyIncreasesStage4"/>
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="LT" value="@varCPCSANightlyIncreasesStage5"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSAStatsNightly" operation="add" value="@varCPCSANightlyIncreasesValue6">
+					<requirement name="CVarCompare" cvar="varCPCSANightlyIncreases" operation="GTE" value="@varCPCSANightlyIncreasesStage5"/>
+				</triggered_effect>
+				
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffCPCSAStatsUpdater">
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCSAStats" name_key="buffCPCSAStatsName" description_key="buffCPCSAStatsDesc" showonhud="false" icon="ui_game_symbol_skills" icon_color="211,211,211" icon_blink="false" remove_on_death="false"> 
+			<stack_type value="ignore"/>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCSAStatsUpdater" hidden="true" remove_on_death="false"> 
+			<stack_type value="ignore"/>
+			<effect_group>			
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCPCSAStats"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSAStatsAcidBalms" operation="subtract" value="@varCPCSAStatsAcidBalmsMinSAOffset"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSAStatsTotalBase" operation="set" value="@varCPCSAStatsStart"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSAStatsTotalBase" operation="add" value="@varCPCSAStatsBurns"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSAStatsTotalBase" operation="add" value="@varCPCSAStatsNightly"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSAStatsTotalBase" operation="subtract" value="@varCPCSAStatsAcidBalms"/>
+				
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCPCSAStatsUpdater"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCPCSAStats"/>
+			</effect_group>
+		</buff>
+	</append>
+
+<!-- ************* -->
+
+
+<!-- BIOME MODIFIERS TO SKIN ACIDITY -->
+	<append xpath="/buffs">
+		<buff name="buffCPCSADesertIncrease" name_key="buffCPCSADesertIncreaseName" description_key="buffCPCSADesertIncreaseDesc" showonhud="false" icon="ui_game_symbol_chemistry" icon_color="255,128,0" remove_on_death="false"> 
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="add" value="@varCPCSADesertIncrease">
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="subtract" value="@varCPCSADesertIncrease">
+				</triggered_effect>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCSABurntForestIncrease" name_key="buffCPCSABurntForestIncreaseName" description_key="buffCPCSABurntForestIncreaseDesc" showonhud="false" icon="ui_game_symbol_chemistry" icon_color="255,128,0" remove_on_death="false"> 
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="add" value="@varCPCSABurntForestIncrease">
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="subtract" value="@varCPCSABurntForestIncrease">
+				</triggered_effect>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCSASnowIncrease" name_key="buffCPCSASnowIncreaseName" description_key="buffCPCSASnowIncreaseDesc" showonhud="false" icon="ui_game_symbol_chemistry" icon_color="255,128,0" remove_on_death="false"> 
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="add" value="@varCPCSASnowIncrease">
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="subtract" value="@varCPCSASnowIncrease">
+				</triggered_effect>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCSAWastelandIncrease" name_key="buffCPCSAWastelandIncreaseName" description_key="buffCPCSAWastelandIncreaseDesc" showonhud="false" icon="ui_game_symbol_chemistry" icon_color="255,128,0" remove_on_death="false"> 
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="add" value="@varCPCSAWastelandIncrease">
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="subtract" value="@varCPCSAWastelandIncrease">
+				</triggered_effect>
+			</effect_group>
+		</buff>
+	</append>
+
+
+<!-- ************* -->
+
+
+<!-- ACID BURNS -->
+	<append xpath="/buffs">
+		<buff name="buffCPCAcidWaterBurns" name_key="buffCPCAcidWaterBurnsName" description_key="buffCPCAcidWaterBurnsDesc" tooltip_key="buffCPCAcidWaterBurnsTooltip" icon="ui_game_symbol_chemistry" icon_color="255,0,0" icon_blink="true"> 
+			<damage_type value="bloodloss"/>
+			<stack_type value="ignore"/>
+			<display_value value="$varCPCAcidBurnExit"/><display_value_key value="{0:0.0}"/>
+			<update_rate value="2.5"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$varCPCAcidBurnExit" operation="set" value="@varCPCWaterproofness"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$varCPCAcidBurnExit" operation="divide" value="@varCPCAcidBurnExitModifier"/>
+				
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="add" value="@varCPCAcidBurnPer"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSAStatsBurns" operation="add" value="@varCPCAcidBurnPer"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffCPCSAStatsUpdater">
+					<requirement name="!HasBuff" buff="buffCPCTheOldYou"/>
+				</triggered_effect>
+
+				<!-- Credit: Thanks to Khaine for much of the following section, as here I borrowed and learned much from his Inferno (Deadly Sun) mod. -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" operation="subtract" value="@varCPCSkinAcidity">
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="subtract" value="@varCPCSkinAcidity">
+				</triggered_effect>
+				
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" target="self" sound="Player_Male/player1painlg">
+					<requirement name="IsMale"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" target="self" sound="Player_Male/player1painlg">
+					<requirement name="IsMale"/>
+				</triggered_effect>
+				
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" target="self" sound="Player_Female/player2painlg">
+					<requirement name="!IsMale"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" target="self" sound="Player_Female/player2painlg">
+					<requirement name="!IsMale"/>
+				</triggered_effect>
+				
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade=".7" effect_name="Hot">
+					<requirement name="CVarCompare" cvar="RadiationSignal" operation="Equals" value="1"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="0" fade=".7" effect_name="Hot">
+					<requirement name="CVarCompare" cvar="RadiationSignal" operation="Equals" value="0"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" effect_name="Blur" intensity=".6" fade="0.5"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" effect_name="Blur" intensity="0" fade="1"/>
+				<triggered_effect trigger="onSelfDied" action="ModifyScreenEffect" effect_name="Infected" intensity="0" fade="0"/>
+			</effect_group>
+			
+			<effect_group name="run particles, cleanup">
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,-0.5,1.5" parent_transform="LOD0" shape_mesh="true"/> <!-- Khaine's Inferno mod used this for its particle effects: p_onFire, with local_offset set to 0,0,0-->
+				<triggered_effect trigger="onSelfEnteredGame" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,-0.5,1.5" parent_transform="LOD0" shape_mesh="true"/> <!-- Another option is: RadiatedParticlesOnMesh, with local_offset set to 0,0,0. Or you could do: p_torch_wall, with local_offset set to 0,-0.5,1.5. Alternatively, you could comment out the code lines in this section that have "p_onFire" if you wanted more vision when your character is burning. -->
+
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_burn_lp"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_burn_lp"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="buff_burn_extinguish"/>
+			</effect_group>
+		</buff>		
+	</append>
+
+<!-- ************* -->
+
+
+<!-- ACID BALM -->
+	<append xpath="/buffs">
+		<buff name="buffCPCAcidBalm" name_key="buffCPCAcidBalmName" description_key="buffCPCAcidBalmDesc" icon="ui_game_symbol_twitch_shield" icon_color="211,211,211" remove_on_death="false">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<display_value value=".varCPCAcidBalmShield"/>
+			<display_value_format value="time"/>
+			<update_rate value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".varCPCAcidBalmShield" operation="subtract" value="1"/> <!-- (NB: This is just a timer, and not the amount that skin aciditiy reduced when acid balm is applied) -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCAcidBalm">
+					<requirement name="CVarCompare" cvar=".varCPCAcidBalmShield" operation="LTE" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".varCPCAcidBalmShield" operation="set" value="@varCPCAcidBalmShieldSetTime"/> <!-- This ensures that when the player reapplies balm while they're already benefitting from a previous application, the meter is set back to the beginning so they get the full benefit of the second application. -->
+			</effect_group>
+			<!--NB: The item 'acidbalm' handles the trigger effects (so you can find code on this in the 'item' file), and the other buffs handle the interactivity between themselves and this buff-->
+		</buff>
+	</append>
+
+
+<!-- ************* -->
+
+
+<!-- WATERPROOFNESS -->
+	<append xpath="/buffs">
+		<buff name="buffCPCWaterproofness" name_key="buffCPCWaterproofnessName" description_key="buffCPCWaterproofnessDesc" icon="ui_game_symbol_light_armor" icon_color="211,211,211" remove_on_death="false">
+			<stack_type value="ignore"/>
+			<display_value value="varCPCWaterproofness"/><display_value_key value="{0:0.0}"/>
+			<update_rate value="2"/>
+		</buff>
+	</append>	
+
+	<append xpath="/buffs">
+		<buff name="buffCPCUpdatingWaterproofness" hidden="true">
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPStartingWaterproofness"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferBallCap"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferSkullCap"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferCowboyHat"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferModBallCap"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferModSkullCap"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferModCowboyHat"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferCollegeJacket"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferDuster"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferPoncho"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferPuffer"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferBDUTop"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferGothPants"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferHazmatMask"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferHazmatJacket"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferHazmatGloves"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferHazmatBoots"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCUpdatingWaterproofness" operation="add" value="@varCPCWPTransferHazmatPants"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCWaterproofness" operation="set" value="@varCPCUpdatingWaterproofness"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCPCUpdatingWaterproofness"/>
+			</effect_group>
+		</buff>
+	</append>
+	
+	
+<!-- ************* -->
+	
+
+<!-- GAME OUTCOME - CURED OR TOO LATE? -->
+	<append xpath="/buffs">
+		<buff name="buffCPCDeadlineExpired" name_key="buffCPCDeadlineExpiredName" description_key="buffCPCDeadlineExpiredDesc" icon="ui_game_symbol_skull" icon_color="255,0,0" icon_blink="true" remove_on_death="false">
+			<stack_type value="ignore"/>
+			<display_value value=".varCPCCDeadlineExpired"/><display_value_format value="time"/>
+			<update_rate value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".varCPCCDeadlineExpired" operation="set" value="@varCPCCDeadlineExpiredSetTime"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCPCCureDeadlineLastWarning"/>
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_stunned"/>
+				
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="add" value="0.10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".varCPCCDeadlineExpired" operation="subtract" value="1"/> <!-- (NB: This is just a timer). -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCDeadlineExpired">
+					<requirement name="CVarCompare" cvar=".varCPCCDeadlineExpired" operation="LTE" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_stunned"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffCPCTheNewYou"/>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCTheNewYou" name_key="buffCPCTheNewYouName" description_key="buffCPCTheNewYouDesc" showonhud="false" icon="ui_game_symbol_fatigued" icon_color="255,0,0" remove_on_death="false">
+			<stack_type value="ignore"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="player#vomit" play_in_head="true"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="triggerStun"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="triggerLaceration"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCPCInTheTradersPocket"/>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCTheNewYouIsNoFun" hidden="true" remove_on_death="false">
+			<effect_group>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="25"/>
+					<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="player#vomit" play_in_head="true"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="triggerFatigued"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="25"/>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/>
+					<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="player#vomit" play_in_head="true"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="triggerLaceration"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="50"/>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="75"/>
+					<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="player#vomit" play_in_head="true"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="triggerStun"/>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCAcidualHealing" name_key="buffCPCAcidualHealingName" description_key="buffCPCAcidualHealingDesc" tooltip_key="buffCPCAcidualHealingTooltip" icon="ui_game_symbol_muscle" icon_color="0,240,0" icon_blink="true" remove_on_death="false">
+			<stack_type value="ignore"/>
+			<display_value value=".varCPCAcidualHealing"/><display_value_format value="time"/>
+			<update_rate value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".varCPCAcidualHealing" operation="set" value="@varCPCAcidualHealingSetTime"/>
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="player_firstAidKit" play_in_head="true"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCPCAcidWaterBurns"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCPCCureDeadline"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCPCCureDeadlineFirstWarning"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCPCCureDeadlineLastWarning"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" target="self" cvar="varCPCSAMinimum" operation="set" value="0.00"/> <!-- This sets the skin acidity minimum to zero, so the player can watch it tick down as they heal. -->
+				
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".varCPCAcidualHealing" operation="subtract" value="1"/> <!-- (NB: This is just a timer). -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="subtract" value="0.10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCPCAcidualHealing">
+					<requirement name="CVarCompare" cvar=".varCPCAcidualHealing" operation="LTE" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffCPCTheOldYou"/>
+			</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCTheOldYou" name_key="buffCPCTheOldYouName" description_key="buffCPCTheOldYouDesc" showonhud="false" icon="ui_game_symbol_muscle" icon_color="0,240,0" remove_on_death="false">
+			<stack_type value="ignore"/>
+			<update_rate value="3"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="varCPCSkinAcidity" operation="set" value="0.00"/>
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="read_skillbook_final"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffCPCTheOldYouRemovingNowIrrelevantBuffs"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCPCAcidQuestRead"/>
+			</effect_group>
+		<effect_group>
+			<passive_effect name="RunSpeed" operation="perc_add" value=".1"/>
+			<passive_effect name="WalkSpeed" operation="perc_add" value=".1"/>
+			<passive_effect name="StaminaChangeOT" operation="perc_add" value=".1" tags="running"/>
+		</effect_group>
+		</buff>
+	</append>
+
+	<append xpath="/buffs">
+		<buff name="buffCPCTheOldYouRemovingNowIrrelevantBuffs" hidden="true" remove_on_death="false">
+			<duration value="20"/>
+			<update_rate value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffCPCWaterproofness"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffCPCSkinAcidity"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffCPCSADesertIncrease"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffCPCSABurntForestIncrease"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffCPCSASnowIncrease"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffCPCSAWastelandIncrease"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffCPCCureCountdown"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffCPCCureDeadlineFirstWarning"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffCPCCureDeadlineLastWarning"/>
+			</effect_group>
+		</buff>
+	</append>
+	
+	
+<!-- ************* -->
+
+
+</configs>
