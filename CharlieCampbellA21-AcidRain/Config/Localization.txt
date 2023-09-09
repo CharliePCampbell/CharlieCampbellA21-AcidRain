@@ -17,15 +17,15 @@ buffCPCAcidWaterBurnsTooltip,The Water is Burning You Like Acid!
 buffCPCAcidWaterBurnsDesc,"The water is deadly on your skin. Get indoors, and hold a torch or light a fire to get dry. Apply Acid Balm if you have it. \n\n(Reduce your Wetness to below this value to stop burning. This number is always half of your Waterproofness at the time you start burning)."
 buffCPCAcidBalmName,Acid Balm
 buffCPCAcidBalmDesc,"You have applied acid balm to your skin. This will shield you from the burning acidic water for {cvar(varCPCAcidBalmShieldSetTime:0)} seconds. \n\nIt has also reduced your Skin Acidity by {cvar(varCPCAcidBalmSAReducer:0.00)}, to a minimum of {cvar(varCPCSAMinimum:0.00)}."
-buffCPCInTheTradersPocketName,Traders' Quest Tiers Needed
-buffCPCInTheTradersPocketDesc,"Getting serious medical attention isn't so easy in the apocalypse. You'll need to earn a big favour from the Duke first. \n\nComplete {cvar(varCPCInTheTradersPocket:0)} unique trader's missions up to and including the tier level you agreed with the Duke. Then, and only then, will he cure your pain."
-buffCPCTradersPaidName,Quest Tiers All Completed
+buffCPCInTheTradersPocketName,Agreed Quest Tiers Remaining
+buffCPCInTheTradersPocketDesc,"Getting serious medical attention isn't so easy in the apocalypse. You'll need to earn a big favour from the Duke first. \n\nComplete {cvar(varCPCInTheTradersPocket:0)} unique traders' quests up to and including the tier level you agreed with the Duke. Then, and only then, will he cure your pain."
+buffCPCTradersPaidName,Agreed Quest Tiers All Completed
 buffCPCTradersPaidDesc,"Your 'upfront debt' to the Duke has been paid! The Duke himself hands over the reward you've longed for all these days \n\nYou take your medicine greedily, and hope like hell that it does the trick..."
 buffCPCAcidQuestGivenName,Acid Quest Given
 buffCPCAcidQuestGivenDesc,"You've been given a note with further instructions from the Duke. \n\nCheck your inventory for the note, and select 'Use'!"
 buffCPCAcidQuestGivenTooltip,Check Inventory. Read Note!
 buffCPCAcidQuestReadName,Quest Read
-buffCPCAcidQuestReadDesc,"Your Quest Tiers Needed number has dropped by one. The cure is getting closer."
+buffCPCAcidQuestReadDesc,"Your Agreed Quest Tiers Remaining number has dropped by one. The cure is getting closer."
 buffCPCAcidQuestDroppedName,Vital Quest Note Dropped!
 buffCPCAcidQuestDroppedDesc,"Quick, pick up that note before you lose it. It's vital!"
 buffCPCAcidQuestDroppedTooltip,You Dropped the Note, Pick it Up, Quick!
@@ -47,9 +47,9 @@ buffCPCAcidualHealingTooltip,It Feels So Good!
 buffCPCTheOldYouName,The Old You
 buffCPCTheOldYouDesc,"You feel your old self coming back. Better yet, you feel added spring to your step (10% increased running/walking speed and stamina regen). \n\nThe cure did its job, and you now have the kit you need to survive whatever this shitty apocalypse has next in store. \n\nCongratulations on completing an Acid Rain mod playthrough! Too easy? See the 'ReadMe' and 'buffs' file notes on how to make it harder. Just right? Then maybe try another quest tier challenge, or mix it up in other ways. Thanks for playing, and have fun!"
 dukesBargainQuest,The Duke's Bargain
-dukesBargainQuestDesc,"To fix a medical situation this gnarly, you have to trade with the man himself. The Duke agrees to give you the cure, but only once you've completed quest tiers for each of his different traders up to an agreed level (1, 2, 3, 4 or 5). \n\n(Note: completing the quest tiers for a second Tradie Jen, say, won't further your goals. It must be for a unique trader each time)."
+dukesBargainQuestDesc,"To fix a medical situation this gnarly, you have to trade with the man himself. The Duke agrees to give you the cure, but only once you've completed quest tiers for each of his different traders up to an agreed level (1, 2, 3, 4 or 5). \n\n(Note: completing the agreed quest tiers for a second Tradie Jen, say, won't further your goals. It must be for a unique trader each time)."
 tradersPocketQuest, Duke's Instructions
-tradersPocketQuestDesc,"It's not enough that you're jumping through his hoops, he also wants it done his way. \n\nRead up, and move on. \n\n(This will reduce your Quest Tiers Needed by 1)."
+tradersPocketQuestDesc,"It's not enough that you're jumping through his hoops, he also wants it done his way. \n\nRead up, and move on. \n\n(This will reduce your Agreed Quest Tiers Remaining by 1)."
 acidbalm,Acid Balm
 acidbalmDesc,"A soothing cream that stops acidic water from burning you when you're wet. \n\nIt also reduces your skin acidity by {cvar(varCPCAcidBalmSAReducer:0.00)}, to a minimum of {cvar(varCPCSAMinimum:0.00)}."
 apparelBallCapDesc,"Clothing provides some heat and cold protection but no armor.\n\nWaterproofness: {cvar(varCPCWPBallCap:0)}."
