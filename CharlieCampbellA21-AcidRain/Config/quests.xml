@@ -1,7 +1,7 @@
 <configs>
 
 <!-- CUSTOMISABLE VARIABLE -->
-<!-- Required Trader Quest Tiers -->
+<!-- Agreed Quest Tiers -->
 <!-- There is only one variable to customise in this file (see next line). -->
 	<append xpath="/quests/quest[@id='quest_tier1complete']"> <!-- Default: quest_tier1complete. To change the challenge, simply replace the "1" with 2, 3, 4 or 5, which correspond to the level of quest tiers completed (per agreed number of unique traders, see the 'buffs' file for this) to get the cure). -->
 
