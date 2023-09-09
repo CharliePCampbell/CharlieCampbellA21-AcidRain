@@ -50,7 +50,7 @@
 - You can set the basic challenge by changing:
 --- Unique Traders: The number of unique traders you'll be doing missions for (see the first section of the 'buffs' file). 
 --- Cure Countdown: The number of days you'll have to complete the challenge ('buffs' file too).
---- Required Trader Quest Tiers: The level of quest tiers that must be completed for your specified number of traders, i.e. T1, T2, T3, T4 or T5 (see 'quests' file). 
+--- Agreed Quest Tiers: The level of quest tiers that must be completed for your specified number of traders, i.e. T1, T2, T3, T4 or T5 (see 'quests' file). 
 --- For example, maybe you want the challenge to be completing all T2 quests for all five unique traders within 28 days.
 
 <!-- GETTING THE LEVEL OF CHALLENGE RIGHT IS CRITICAL -->
@@ -68,7 +68,7 @@
 - Signs that you've set the difficulty to a good level:
 --- Ideally, you should have to do your last trader's missions in the wasteland, or at least in the snow biome. (If your map is such that you're finding most/all your traders in the pine/desert, then your playthrough won't be challenging/fun). 
 --- Ideally, going into the final trader's quests, you shouldn't have been able to stockpile too many acid balms from your previous tradie quests. (e.g. If you have say eight acid balms going into that final trader's quests, the playthrough has been too easy. Perhaps you've been able to spend too much time in the easier biomes?).
---- Ideally, you should only have a day or two left when you finish all the required quest tiers and get the cure. If you had more days left, then on your next playthrough drop the number of days for more challenge and a tenser final few days. 
+--- Ideally, you should only have a day or two left when you finish all the agreed quest tiers and get the cure. If you had more days left, then on your next playthrough drop the number of days for more challenge and a tenser final few days. 
 
 <!-- RECOMMENDED SETTINGS FOR EACH QUEST TIER CHALLENGE -->
 - The following assumes you've selected all 5 unique traders:
@@ -159,8 +159,8 @@
 - Prioritise finding the right clothing items: When in the game, read the Waterproofness buff description, which shows which items have waterproofness values. Learn where best to find each type of clothing (laundries, Savage Country stores, etc). 
 - Hazmat gear: 
 --- The likelihood of finding hazmat gear in loot has been strongly nerfed (though not impossible, particularly from Day 40 onwards), and the cost of buying it at the traders has been made expensive (particularly for the higher tier items). 
---- This makes the reward of completing a unique traders' required quest tier all the more satisfying and important (yet it also leaves room for the 'yay!' moments when you sometimes find them elsewhere). 
---- There is a chance that at the end of a trader's total required quest tiers, they will reward you with the same hazmat gear that you already have. This risk is intentional. It adds anticipation when going to the trader to hand in your final mission for that tier. 
+--- This makes the reward of completing a unique trader's agreed quest tier all the more satisfying and important (yet it also leaves room for the 'yay!' moments when you sometimes find them elsewhere). 
+--- There is a chance that after completing a trader's agreed quest tier, they will reward you with the same hazmat gear that you already have. This risk is intentional. It adds anticipation when going to the trader to hand in your final mission for that tier. 
 --- This is also intended to add to the challenge and the variability/playability long term. 
 
 <!-- Finding all the unique traders in time -->
@@ -181,17 +181,17 @@
 - So while the mid and late games are still fun (the sense of power of a T6 M60 is good times), you don't feel as threatened anymore, so the game loses some of its compulsion.
 
 - This Acid Rain mod is designed to extend that sense of compusion into the mid/late game.
-- If you don't complete the quest tiers in time, the Duke's cure will be useless. So it's effectively a race against time. 
+- If you don't complete the agreed quest tiers in time, the Duke's cure will be useless. So it's effectively a race against time. 
 - The vanilla version is great for its openness, in that the player can do whatever they want. 
 - This mod sacrifices a bit of that openness in exchange for maintaining the sense of tension beyond the early game. 
 - Yet despite the mod's restrictions, the player still has plenty of freedom of choice in how to achieve the ultimate goal of getting that cure in time. 
 
 <!-- Tension through conflicting priorities -->
 - "Should I stay or should I go now?" 
---- On the one hand, it's a race against time to complete the quest tiers.
+--- On the one hand, it's a race against time to complete the agreed quest tiers.
 --- Yet it's now dangerous to stray too far from buildings (i.e. convenient cover) without any acid balm. 
 --- You might want to ration your use of acid balm, which can mean waiting under cover a few in-game hours for the rain to pass before you venture out again to pursue those quests. 
---- But watching the clock tick when you know you've got only so much time to complete the quest tiers gets tense, and can make for tricky decisions (which is fun!). 
+--- But watching the clock tick when you know you've got only so much time to complete the agreed quest tiers gets tense, and can make for tricky decisions (which is fun!). 
 
 - I recommend installing Khaine's Wandering Horde Patch. (See: https://community.7daystodie.com/topic/32007-khaines-a21-modlets-bigger-backpacks-lockable-slots-behemoths-random-wandering-hordes-etc/)
 --- I like to crank up the frequency of wandering hordes, and their size. 
